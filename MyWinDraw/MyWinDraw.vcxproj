@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2A6FB2B7-B4B0-4FB8-A6B2-B833D7C4E93D}</ProjectGuid>
+    <RootNamespace>MyWinDraw</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\MyWinDraw\win32;.\MyWinDraw\classes;.\MyWinDraw\classes\MImpl;.\MyWinDraw;.\MyWinDraw\game;.\MyWinDraw\classes\MTool;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="classes\ImageMgr.h" />
+    <ClInclude Include="classes\MApplication.h" />
+    <ClInclude Include="classes\MApplicationProtocol.h" />
+    <ClInclude Include="classes\MCommonFunction.h" />
+    <ClInclude Include="classes\MDirector.h" />
+    <ClInclude Include="classes\MImpl\MLabelImpl.h" />
+    <ClInclude Include="classes\MImpl\MSpriteImpl.h" />
+    <ClInclude Include="classes\MLabel.h" />
+    <ClInclude Include="classes\MNode.h" />
+    <ClInclude Include="classes\MObject.h" />
+    <ClInclude Include="classes\MPlatform.h" />
+    <ClInclude Include="classes\MScene.h" />
+    <ClInclude Include="classes\MSchedule.h" />
+    <ClInclude Include="classes\MShap.h" />
+    <ClInclude Include="classes\MSprite.h" />
+    <ClInclude Include="classes\MTool\MSingleton.h" />
+    <ClInclude Include="classes\MTouch\MTouchControl.h" />
+    <ClInclude Include="classes\MTouch\MTouchProtocol.h" />
+    <ClInclude Include="classes\MyGraphics.h" />
+    <ClInclude Include="classes\MyGraphicsProtocol.h" />
+    <ClInclude Include="game\Applegate.h" />
+    <ClInclude Include="game\HelloWorld.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="win32\MWindow.h" />
+    <ClInclude Include="win32\MyDef.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="classes\ImageMgr.cpp" />
+    <ClCompile Include="classes\MApplication.cpp" />
+    <ClCompile Include="classes\MCommonFunction.cpp" />
+    <ClCompile Include="classes\MDirector.cpp" />
+    <ClCompile Include="classes\MImpl\MLabelImpl.cpp" />
+    <ClCompile Include="classes\MImpl\MSpriteImpl.cpp" />
+    <ClCompile Include="classes\MLabel.cpp" />
+    <ClCompile Include="classes\MNode.cpp" />
+    <ClCompile Include="classes\MObject.cpp" />
+    <ClCompile Include="classes\MScene.cpp" />
+    <ClCompile Include="classes\MSchedule.cpp" />
+    <ClCompile Include="classes\MSprite.cpp" />
+    <ClCompile Include="classes\MTouch\MTouchControl.cpp" />
+    <ClCompile Include="classes\MyGraphics.cpp" />
+    <ClCompile Include="game\Applegate.cpp" />
+    <ClCompile Include="game\HelloWorld.cpp" />
+    <ClCompile Include="win32\main.cpp" />
+    <ClCompile Include="win32\MWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="png1.png" />
+    <Image Include="res\xzs_num_0.png" />
+    <Image Include="res\xzs_num_1.png" />
+    <Image Include="res\xzs_num_2.png" />
+    <Image Include="res\xzs_num_3.png" />
+    <Image Include="res\xzs_num_4.png" />
+    <Image Include="res\xzs_num_5.png" />
+    <Image Include="res\xzs_num_6.png" />
+    <Image Include="res\xzs_num_7.png" />
+    <Image Include="res\xzs_num_8.png" />
+    <Image Include="res\xzs_num_9.png" />
+    <Image Include="res\zhuomian_xiaoqiu.png" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -15,6 +15,12 @@ $RECYCLE.BIN/
 *.msp
 *.exe
 *.suo
+*.log
+*.pdb
+*.ilk
+*.idb
+*.opensdf
+*.suo
 
 # Windows shortcuts
 *.lnk

@@ -121,9 +121,9 @@ void fun_calcGrayAscall(std::map<int, std::vector<char> >& ascallGray)
 
 	for (int i = 33; i < 127; ++i)
 	{
-		if ((i >= 'A' && i <= 'Z') || (i >= 'a' && i <= 'z') || (i >= '0' && i <= '9'))
+		//if ((i >= 'A' && i <= 'Z') || (i >= 'a' && i <= 'z') || (i >= '0' && i <= '9'))
 		{
-			continue;
+		//	continue;
 		}
 		char ch = i;
 		MAT2 mat2 = { { 0, 1 }, { 0, 0 }, { 0, 0 }, { 0, 1 } };
@@ -199,21 +199,43 @@ int _tmain(int argc, _TCHAR* argv[])
 			
 		}
 
+		int grayMax = ascallGray.rbegin()->first;
 		float gray = (_data[i] * 30 + _data[i + 1] * 59 + _data[i + 2] * 11) / 100.0f;		
-		int index = (int)(gray / 255.0f*ascallGray.size());
-		index = index > ascallGray.size() ? ascallGray.size() : index;
-		index = ascallGray.size() - index;
+		int index = (int)(gray / 255.0f*grayMax);
+		index = index > grayMax ? grayMax : index;
+		index = grayMax - index;
 
-		int j = 0;
-		std::map<int, std::vector<char> >::iterator it = ascallGray.begin();
-		for (; it != ascallGray.end(); ++it, ++j)
+		std::map<int, std::vector<char> >::iterator it = ascallGray.find(index);
+		if (it != ascallGray.end())
 		{
-			if (j == index)
-			{							
-				stream << it->second.back();
-				break;
+			stream << it->second.back();
+		}
+		else
+		{	
+			bool isFind = false;
+			do 
+			{
+				if ((it = ascallGray.find(--index)) != ascallGray.end())
+				{
+					isFind = true;
+					stream << it->second.back();
+				}
+			} while (!isFind && index >= 0);
+			if (!isFind)
+			{
+				stream << ascallGray.begin()->second.back();
 			}
-		}		
+		}
+//		int j = 0;
+// 		std::map<int, std::vector<char> >::iterator it = ascallGray.begin();
+// 		for (; it != ascallGray.end(); ++it, ++j)
+// 		{
+// 			if (j == index)
+// 			{							
+// 				stream << it->second.back();
+// 				break;
+// 			}
+// 		}		
 	}
 	stream.close();
 	return 0;

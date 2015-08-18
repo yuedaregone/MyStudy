@@ -9,6 +9,8 @@
 #include <vector>
 #include "MImage.h"
 #include <fstream>
+#include "string_common.h"
+#include <atlstr.h>
 
 void fun_turnWordToDot()
 {
@@ -163,81 +165,131 @@ void fun_calcGrayAscall(std::map<int, std::vector<char> >& ascallGray)
 	ReleaseDC(NULL, dc);	
 }
 
+void findAllFile(std::vector<CString>& vStrFile, CString lpPath)
+{
+	CString szFind;
+	CString szFile;
+
+	WIN32_FIND_DATA FindFileData;
+	szFind = lpPath;
+	szFind = szFind + "\\*.*";
+
+	HANDLE hFind = ::FindFirstFile(szFind, &FindFileData);
+	if (INVALID_HANDLE_VALUE == hFind) return;
+	while (::FindNextFile(hFind, &FindFileData))
+	{
+		CString fileName = FindFileData.cFileName;
+		if (fileName.Compare(L".") == 0 || fileName.Compare(L"..") == 0)
+		{
+			continue;
+		}
+		szFile = lpPath;
+		szFile = szFile + "\\";
+		szFile = szFile + fileName;
+
+		if (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		{
+			findAllFile(vStrFile, szFile);
+		}
+		else
+		{
+			int index = fileName.Find(L'.');
+			CString houzhui = fileName.Right(fileName.GetLength() - index);
+			if (houzhui.Compare(L".png") == 0)
+			{
+				vStrFile.push_back(szFile);
+			}
+		}
+	}
+	FindClose(hFind);
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	std::map<int, std::vector<char> > ascallGray;
 	fun_calcGrayAscall(ascallGray);
 
-	MImage img;
-	img.initWithFile("as.png", MImage::typePNG);
-	BYTE* _data = img.getData();
-	size_t _size = img.getDataSize();
-	unsigned short w = img.getWidth();
-	int off = 3;
-	if (img.isHasAlpha())
+	wchar_t* pathFile = argv[0];
+	char buff[1024] = { 0 };
+	wcstombs(buff, pathFile, 1024);
+	std::string strPath = buff;
+	strPath = strPath.substr(0, strPath.rfind("\\"));
+	
+	std::vector<CString> vFiles;
+	findAllFile(vFiles, strPath.c_str());
+	
+	std::vector<CString>::iterator it = vFiles.begin();
+	for (; it != vFiles.end(); ++it)
 	{
-		off = 4;
-	}	
-	std::ofstream stream("a.txt");
-	int k = 0;
-	int h = w*off;
-	for (int i = 0; i < _size; i += off)
-	{
-		if (i != 0 && i % h == 0)
-		{
-			k++;
-			stream << "\n";
-			if (k == 1)
-			{
-				i += h;
-				if (i > _size || (_size - i < h))
-				{
-					break;
-				}
-				k = 0;
-			}
-			
-		}
+		CString& file = *it;
+		memset(buff, 0, 1024);
+		wcstombs(buff, file.GetString(), 1024);
+		std::string fileTxt = buff;		
+		fileTxt = fileTxt.substr(0, fileTxt.find_last_of("."));
+		fileTxt = fileTxt.substr(fileTxt.find_last_of("\\")+1, fileTxt.length());
+		fileTxt += ".txt";
 
-		int grayMax = ascallGray.rbegin()->first;
-		float gray = (_data[i] * 30 + _data[i + 1] * 59 + _data[i + 2] * 11) / 100.0f;		
-		int index = (int)(gray / 255.0f*grayMax);
-		index = index > grayMax ? grayMax : index;
-		index = grayMax - index;
-
-		std::map<int, std::vector<char> >::iterator it = ascallGray.find(index);
-		if (it != ascallGray.end())
+		MImage img;
+		img.initWithFile(buff, MImage::typePNG);
+		BYTE* _data = img.getData();
+		size_t _size = img.getDataSize();
+		unsigned short w = img.getWidth();
+		int off = 3;
+		if (img.isHasAlpha())
 		{
-			stream << it->second.back();
+			off = 4;
 		}
-		else
-		{	
-			bool isFind = false;
-			do 
+		std::ofstream stream(fileTxt);
+		int k = 0;
+		int h = w*off;
+		for (int i = 0; i < _size; i += off)
+		{
+			if (i != 0 && i % h == 0)
 			{
-				if ((it = ascallGray.find(--index)) != ascallGray.end())
+				k++;
+				stream << "\n";
+				if (k == 1)
 				{
-					isFind = true;
-					stream << it->second.back();
+					i += h;
+					if (i > _size || (_size - i < h))
+					{
+						break;
+					}
+					k = 0;
 				}
-			} while (!isFind && index >= 0);
-			if (!isFind)
-			{
-				stream << ascallGray.begin()->second.back();
+
 			}
+
+			int grayMax = ascallGray.rbegin()->first;
+			float gray = (_data[i] * 30 + _data[i + 1] * 59 + _data[i + 2] * 11) / 100.0f;
+			int index = (int)(gray / 255.0f*grayMax);
+			index = index > grayMax ? grayMax : index;
+			index = grayMax - index;
+
+			std::map<int, std::vector<char> >::iterator it = ascallGray.find(index);
+			if (it != ascallGray.end())
+			{
+				stream << it->second.back();
+			}
+			else
+			{
+				bool isFind = false;
+				do
+				{
+					if ((it = ascallGray.find(--index)) != ascallGray.end())
+					{
+						isFind = true;
+						stream << it->second.back();
+					}
+				} while (!isFind && index >= 0);
+				if (!isFind)
+				{
+					stream << ascallGray.begin()->second.back();
+				}
+			}				
 		}
-//		int j = 0;
-// 		std::map<int, std::vector<char> >::iterator it = ascallGray.begin();
-// 		for (; it != ascallGray.end(); ++it, ++j)
-// 		{
-// 			if (j == index)
-// 			{							
-// 				stream << it->second.back();
-// 				break;
-// 			}
-// 		}		
+		stream.close();
 	}
-	stream.close();
 	return 0;
 }
 

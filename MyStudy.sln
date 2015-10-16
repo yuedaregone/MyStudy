@@ -9,6 +9,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DotMatrix", "DotMatrix\DotM
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InfectPE", "InfectPE\InfectPE.vcxproj", "{EBA26618-2DD6-4ED9-806F-573CAFEFC9ED}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Read", "Read\Read.vcxproj", "{B67D32C3-7977-4F5F-9F3F-8D8816E92D55}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libDraw", "libDraw\libDraw.vcxproj", "{459FB8B1-57F6-412B-B02E-8567BACC8B92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -27,6 +31,14 @@ Global
 		{EBA26618-2DD6-4ED9-806F-573CAFEFC9ED}.Debug|Win32.Build.0 = Debug|Win32
 		{EBA26618-2DD6-4ED9-806F-573CAFEFC9ED}.Release|Win32.ActiveCfg = Release|Win32
 		{EBA26618-2DD6-4ED9-806F-573CAFEFC9ED}.Release|Win32.Build.0 = Release|Win32
+		{B67D32C3-7977-4F5F-9F3F-8D8816E92D55}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B67D32C3-7977-4F5F-9F3F-8D8816E92D55}.Debug|Win32.Build.0 = Debug|Win32
+		{B67D32C3-7977-4F5F-9F3F-8D8816E92D55}.Release|Win32.ActiveCfg = Release|Win32
+		{B67D32C3-7977-4F5F-9F3F-8D8816E92D55}.Release|Win32.Build.0 = Release|Win32
+		{459FB8B1-57F6-412B-B02E-8567BACC8B92}.Debug|Win32.ActiveCfg = Debug|Win32
+		{459FB8B1-57F6-412B-B02E-8567BACC8B92}.Debug|Win32.Build.0 = Debug|Win32
+		{459FB8B1-57F6-412B-B02E-8567BACC8B92}.Release|Win32.ActiveCfg = Release|Win32
+		{459FB8B1-57F6-412B-B02E-8567BACC8B92}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

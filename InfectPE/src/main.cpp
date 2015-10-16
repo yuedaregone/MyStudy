@@ -5,6 +5,28 @@
 #include <tchar.h>
 using namespace std;
 
+void CodeInfo(int *start,int *CodeSize)
+{
+	DWORD s,e;
+	_asm
+	{
+		push eax
+		mov eax,begin1
+		mov s,eax
+		mov eax,end1
+		mov e,eax
+		jmp end1
+		begin1:
+		//这里放你需要的汇编代码
+		mov eax,42969AH
+		jmp eax
+		end1:
+		pop eax
+	}
+	*start=s;
+	*CodeSize=e-s;
+}
+
 BOOL IsPeFile(LPVOID  ImageBase)   //判断是否是PE文件结构
 {
 	PIMAGE_DOS_HEADER  pDosHeader = NULL;
@@ -61,7 +83,7 @@ PIMAGE_OPTIONAL_HEADER  GetOptionalHeader(LPVOID  ImageBase)
 
 
 
-BOOL RvaToOffset(LPVOID lpMoudle, DWORD Rva)
+DWORD RvaToOffset(LPVOID lpMoudle, DWORD Rva)
 {
 	//定义变量存储转换后的偏移值和节表数
 	DWORD FileOffset;
@@ -89,11 +111,11 @@ BOOL RvaToOffset(LPVOID lpMoudle, DWORD Rva)
 		}
 		pSectionHead++;
 	}
-	return FALSE;
+	return 0;
 }
 
 
-BOOL RvaToVirtualAddress(LPVOID lpMoudle, DWORD Rva)
+DWORD RvaToVirtualAddress(LPVOID lpMoudle, DWORD Rva)
 {
 	DWORD offect = RvaToOffset(lpMoudle, Rva);
 	/*if(offect==NULL||offect==FALSE)
@@ -123,6 +145,17 @@ VOID HandleSessionTable(LPVOID file, LPVOID base)
 
 	int datalength = 16 * 4 + 8;
 	int codeslength = sizeof(codes)-1;
+
+	char* myCode = NULL;
+	{
+		int startAddr = 0;
+		int condeSize = 0;
+		CodeInfo(&startAddr, &condeSize);
+		myCode = new char[condeSize];
+		memcpy(myCode, (const void *)startAddr, condeSize);
+
+		codeslength = condeSize;
+	}
 
 	IMAGE_NT_HEADERS *nthead = GetNtHeader(base);
 	IMAGE_SECTION_HEADER *sessionhead = (IMAGE_SECTION_HEADER*)((DWORD)nthead + sizeof(IMAGE_NT_HEADERS));
@@ -156,11 +189,11 @@ VOID HandleSessionTable(LPVOID file, LPVOID base)
 			SetFilePointer(file, cedefileoffset, NULL, FILE_BEGIN);
 			DWORD oldentry = nthead->OptionalHeader.AddressOfEntryPoint;
 			DWORD JMPOffset = oldentry - (codevirtualbase + codeslength - 5) - 5;
-			memcpy(codes + codeslength - 4, &JMPOffset, sizeof(DWORD));
+			memcpy(myCode + codeslength - 4, &JMPOffset, sizeof(DWORD));
 			nthead->OptionalHeader.AddressOfEntryPoint = codevirtualbase;
 			DWORD writesize = 0;
 			SetFilePointer(file, cedefileoffset, NULL, FILE_BEGIN);
-			if (!WriteFile(file, codes, codeslength, &writesize, 0))
+			if (!WriteFile(file, myCode, codeslength, &writesize, 0))
 			{
 				TCHAR  *buffer;
 				::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM, NULL, GetLastError(), 0, (LPTSTR)&buffer, 0, NULL);

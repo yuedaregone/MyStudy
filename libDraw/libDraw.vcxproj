@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{459FB8B1-57F6-412B-B02E-8567BACC8B92}</ProjectGuid>
+    <RootNamespace>libDraw</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>.\src;.\src\MImpl;.\src\MTool;.\src\MTouch;.\src\MPlatfom;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ImageMgr.cpp" />
+    <ClCompile Include="src\MApplication.cpp" />
+    <ClCompile Include="src\MCommonFunction.cpp" />
+    <ClCompile Include="src\MDirector.cpp" />
+    <ClCompile Include="src\MImpl\MLabelImpl.cpp" />
+    <ClCompile Include="src\MImpl\MSpriteImpl.cpp" />
+    <ClCompile Include="src\MLabel.cpp" />
+    <ClCompile Include="src\MNode.cpp" />
+    <ClCompile Include="src\MObject.cpp" />
+    <ClCompile Include="src\MPlatfom\MWindow.cpp" />
+    <ClCompile Include="src\MScene.cpp" />
+    <ClCompile Include="src\MSchedule.cpp" />
+    <ClCompile Include="src\MSprite.cpp" />
+    <ClCompile Include="src\MTouch\MTouchControl.cpp" />
+    <ClCompile Include="src\MyGraphics.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ImageMgr.h" />
+    <ClInclude Include="src\MApplication.h" />
+    <ClInclude Include="src\MApplicationProtocol.h" />
+    <ClInclude Include="src\MCommonFunction.h" />
+    <ClInclude Include="src\MDirector.h" />
+    <ClInclude Include="src\MDraw.h" />
+    <ClInclude Include="src\MImpl\MLabelImpl.h" />
+    <ClInclude Include="src\MImpl\MSpriteImpl.h" />
+    <ClInclude Include="src\MLabel.h" />
+    <ClInclude Include="src\MNode.h" />
+    <ClInclude Include="src\MObject.h" />
+    <ClInclude Include="src\MPlatfom\MWindow.h" />
+    <ClInclude Include="src\MPlatform.h" />
+    <ClInclude Include="src\MScene.h" />
+    <ClInclude Include="src\MSchedule.h" />
+    <ClInclude Include="src\MShap.h" />
+    <ClInclude Include="src\MSprite.h" />
+    <ClInclude Include="src\MTool\MSingleton.h" />
+    <ClInclude Include="src\MTouch\MTouchControl.h" />
+    <ClInclude Include="src\MTouch\MTouchProtocol.h" />
+    <ClInclude Include="src\MyDef.h" />
+    <ClInclude Include="src\MyGraphics.h" />
+    <ClInclude Include="src\MyGraphicsProtocol.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

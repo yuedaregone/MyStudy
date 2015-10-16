@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\MImpl">
+      <UniqueIdentifier>{02520b1c-e743-4f49-96b7-b273587f6071}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MTool">
+      <UniqueIdentifier>{b2f15e42-800d-4143-8480-57e1734f05cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MTouch">
+      <UniqueIdentifier>{a19d2f7e-396b-45b2-89c8-7f98e03a9e8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MPlatfom">
+      <UniqueIdentifier>{1b3d33b2-5911-4206-9f53-7610348d5840}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ImageMgr.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MApplication.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MCommonFunction.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MDirector.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MLabel.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MNode.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MSchedule.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MSprite.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MyGraphics.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MImpl\MLabelImpl.cpp">
+      <Filter>src\MImpl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MImpl\MSpriteImpl.cpp">
+      <Filter>src\MImpl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MTouch\MTouchControl.cpp">
+      <Filter>src\MTouch</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MPlatfom\MWindow.cpp">
+      <Filter>src\MPlatfom</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ImageMgr.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MApplication.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MApplicationProtocol.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MCommonFunction.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MDirector.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MLabel.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MNode.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MObject.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MPlatform.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MSchedule.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MShap.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MSprite.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MyGraphics.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MyGraphicsProtocol.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MImpl\MLabelImpl.h">
+      <Filter>src\MImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MImpl\MSpriteImpl.h">
+      <Filter>src\MImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MTool\MSingleton.h">
+      <Filter>src\MTool</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MTouch\MTouchControl.h">
+      <Filter>src\MTouch</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MTouch\MTouchProtocol.h">
+      <Filter>src\MTouch</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MyDef.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MPlatfom\MWindow.h">
+      <Filter>src\MPlatfom</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MDraw.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

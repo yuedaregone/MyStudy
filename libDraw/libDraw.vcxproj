@@ -44,7 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.\src;.\src\MImpl;.\src\MTool;.\src\MTouch;.\src\MPlatfom;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\src;.\src\MImpl;.\src\MTool;.\src\MTouch;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -74,7 +74,6 @@
     <ClCompile Include="src\MLabel.cpp" />
     <ClCompile Include="src\MNode.cpp" />
     <ClCompile Include="src\MObject.cpp" />
-    <ClCompile Include="src\MPlatfom\MWindow.cpp" />
     <ClCompile Include="src\MScene.cpp" />
     <ClCompile Include="src\MSchedule.cpp" />
     <ClCompile Include="src\MSprite.cpp" />
@@ -93,7 +92,6 @@
     <ClInclude Include="src\MLabel.h" />
     <ClInclude Include="src\MNode.h" />
     <ClInclude Include="src\MObject.h" />
-    <ClInclude Include="src\MPlatfom\MWindow.h" />
     <ClInclude Include="src\MPlatform.h" />
     <ClInclude Include="src\MScene.h" />
     <ClInclude Include="src\MSchedule.h" />

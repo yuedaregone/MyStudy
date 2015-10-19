@@ -4,9 +4,13 @@
 class MApplicationProtocol
 {
 public:
-	~MApplicationProtocol(){};
-	virtual void appBeforLaunch() = 0;
-	virtual void appLaunchFinish() = 0;
+	virtual ~MApplicationProtocol(){};	
+public:
+	virtual void mOnInit(int x, int y, int w, int h) = 0;
+	virtual void mOnDestroy() = 0;
+	virtual void mOnTimer() = 0;
+	virtual void mOnMainLoop() = 0;
+	virtual void mSetHWND(void* _hwnd) = 0;	
 };
 
 #endif

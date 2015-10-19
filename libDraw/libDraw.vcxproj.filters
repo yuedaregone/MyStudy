@@ -14,9 +14,6 @@
     <Filter Include="src\MTouch">
       <UniqueIdentifier>{a19d2f7e-396b-45b2-89c8-7f98e03a9e8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\MPlatfom">
-      <UniqueIdentifier>{1b3d33b2-5911-4206-9f53-7610348d5840}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ImageMgr.cpp">
@@ -61,18 +58,12 @@
     <ClCompile Include="src\MTouch\MTouchControl.cpp">
       <Filter>src\MTouch</Filter>
     </ClCompile>
-    <ClCompile Include="src\MPlatfom\MWindow.cpp">
-      <Filter>src\MPlatfom</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ImageMgr.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\MApplication.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MApplicationProtocol.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\MCommonFunction.h">
@@ -129,10 +120,10 @@
     <ClInclude Include="src\MyDef.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\MPlatfom\MWindow.h">
-      <Filter>src\MPlatfom</Filter>
-    </ClInclude>
     <ClInclude Include="src\MDraw.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MApplicationProtocol.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

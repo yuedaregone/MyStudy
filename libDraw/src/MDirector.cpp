@@ -13,6 +13,8 @@ MDirector::MDirector()
 	,m_fDelayTime(0.0f)
 	,m_uFrames(0)
 	,m_fpsShow(true)
+	,m_wPosX(0)
+	,m_wPosY(0)
 {}
 
 MDirector::~MDirector()
@@ -47,6 +49,16 @@ void MDirector::setWH(int _w, int _h)
 {
 	m_width = _w;
 	m_height = _h;
+}
+
+int MDirector::getScreenWidth()
+{
+	return GetSystemMetrics(SM_CXSCREEN);
+}
+
+int MDirector::getScreenHeight()
+{
+	return GetSystemMetrics(SM_CYSCREEN);
 }
 
 void MDirector::onMainLoop()

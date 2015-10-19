@@ -1,5 +1,6 @@
 #ifndef __MDRAW_H__
 #define __MDRAW_H__
+#include "MWindow.h"
 #include "ImageMgr.h"
 #include "MApplication.h"
 #include "MCommonFunction.h"

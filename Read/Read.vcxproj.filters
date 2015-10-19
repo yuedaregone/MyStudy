@@ -5,6 +5,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{58e09f4b-899c-4741-ad1b-924ccab6ae7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -16,6 +19,9 @@
     <ClCompile Include="src\HelloWorld.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\MWindow.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Applegate.h">
@@ -24,5 +30,25 @@
     <ClInclude Include="src\HelloWorld.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="src\MWindow.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\DfIcon.ico">
+      <Filter>res</Filter>
+    </Image>
+    <Image Include="res\png1.png">
+      <Filter>src</Filter>
+    </Image>
+    <Image Include="res\yimin_title.png">
+      <Filter>src</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Read.rc">
+      <Filter>res</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

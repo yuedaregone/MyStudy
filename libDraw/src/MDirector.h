@@ -12,7 +12,12 @@ public:
 	void init();
 	void destoy();
 	void setWH(int _w, int _h);
+	void setWPos(int _x, int _y) { m_wPosX = _x; m_wPosY = _y; }
 	void setWnd(HWND _wnd) { m_wnd = _wnd; }
+	int getScreenWidth();
+	int getScreenHeight();
+	int getPosX() { return m_wPosX; }
+	int getPosY() { return m_wPosY; }
 public:
 	void onMainLoop();
 	int getWidth() { return m_width; }
@@ -33,6 +38,8 @@ private:
 	MScene* m_nextScene;
 	int m_width;
 	int m_height;
+	int m_wPosX;
+	int m_wPosY;
 	LARGE_INTEGER nFeq;
 	LARGE_INTEGER nCountFirst;
 	LARGE_INTEGER nCountLast;

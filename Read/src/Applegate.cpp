@@ -1,11 +1,11 @@
 #include "Applegate.h"
 #include "HelloWorld.h"
-#include "../classes/MDirector.h"
+#include "MDirector.h"
 
 void Applegate::appBeforLaunch()
 {
-	m_isAccurite = true;
-	m_timerGap = 16; //…Ë÷√timer
+	//m_isAccurite = true;
+	//m_timerGap = 16; //…Ë÷√timer
 }
 
 void  Applegate::appLaunchFinish()

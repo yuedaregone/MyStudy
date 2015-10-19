@@ -36,13 +36,14 @@ void  MyGraphics::update()
 		//DrawNum(hour, 0, 0);
 		//DrawNum(minute, 60, 0);
 		//DrawNum(second, 120, 0, true);
+	//return;
 		render();
 	//}	
 }
 
 void MyGraphics::clear()
 {
-	m_graphics->Clear(Color(0, 0, 0, 0));
+	m_graphics->Clear(Color(255, 255, 255, 255));
 }
 
 void  MyGraphics::render()
@@ -50,14 +51,18 @@ void  MyGraphics::render()
 	BLENDFUNCTION _Blend;
 	_Blend.BlendOp = 0;
 	_Blend.BlendFlags = 0;
-	_Blend.AlphaFormat = 1;
+	_Blend.AlphaFormat = 0.5;
 	_Blend.SourceConstantAlpha = 255;
 
-	POINT p = { 0, 0 };
-	SIZE s = { g_mDirector->getWidth(), g_mDirector->getHeight() };
+	RECT rect;
+	GetWindowRect(m_wnd, &rect);
+
+	POINT p = { rect.left, rect.top };
+	POINT p1 = {0, 0};
+	SIZE s = { rect.right - rect.left, rect.bottom - rect.top };
 	//鼠标会穿透窗体中Alpha值为0的区域
 	::UpdateLayeredWindow(m_wnd, m_dstDC, &p,
-		&s, m_srcDC, &p, 0, &_Blend, ULW_ALPHA);
+		&s, m_srcDC, &p1, 0, &_Blend, ULW_ALPHA);
 }
 
 MyGraphics* MyGraphics::clone()

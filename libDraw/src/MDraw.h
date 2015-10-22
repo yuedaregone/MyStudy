@@ -12,4 +12,5 @@
 #include "MShap.h"
 #include "MSprite.h"
 #include "MyGraphics.h"
+#include "MActions.h"
 #endif

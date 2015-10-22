@@ -14,7 +14,7 @@ public:
 	static MWindow *mGetWindow();
 	void mSetTitle(std::string _pTitleName);
 	void mSetIcon(long _icon);
-	void mSetRect(RECT &_rect);
+	void mSetStartRect(RECT &_rect);
 	void mSetIsAccurite(bool _isAccurite) { m_isAccurite = _isAccurite; }
 	void mSetTimeGap(unsigned int _gap) { m_timerGap = _gap; }
 	void mRun(HINSTANCE _hInstance, int _nCmdShow);	
@@ -45,6 +45,7 @@ protected:
 	bool			m_isAccurite;
 	unsigned int	m_timerGap;	
 	LPSTR			m_iconID;
+	bool			m_isTouch;
 public:
 	void registerApplication(MApplicationProtocol* _app) { m_app = _app; }
 protected:

@@ -14,6 +14,9 @@
     <Filter Include="src\MTouch">
       <UniqueIdentifier>{a19d2f7e-396b-45b2-89c8-7f98e03a9e8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\MAction">
+      <UniqueIdentifier>{584cd7b3-742f-4f90-bc95-62d7c942fef7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ImageMgr.cpp">
@@ -58,6 +61,12 @@
     <ClCompile Include="src\MTouch\MTouchControl.cpp">
       <Filter>src\MTouch</Filter>
     </ClCompile>
+    <ClCompile Include="src\MAction\MActions.cpp">
+      <Filter>src\MAction</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MAction\MActionManager.cpp">
+      <Filter>src\MAction</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ImageMgr.h">
@@ -99,9 +108,6 @@
     <ClInclude Include="src\MyGraphics.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\MyGraphicsProtocol.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\MImpl\MLabelImpl.h">
       <Filter>src\MImpl</Filter>
     </ClInclude>
@@ -125,6 +131,21 @@
     </ClInclude>
     <ClInclude Include="src\MApplicationProtocol.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MAction\MOpacityProtocol.h">
+      <Filter>src\MAction</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MAction\MActions.h">
+      <Filter>src\MAction</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MTool\MInterpolation.h">
+      <Filter>src\MTool</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MAction\MActionManager.h">
+      <Filter>src\MAction</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MAction\MActionTarget.h">
+      <Filter>src\MAction</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

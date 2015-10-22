@@ -16,7 +16,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -44,7 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.\src;.\src\MImpl;.\src\MTool;.\src\MTouch;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\src;.\src\MImpl;.\src\MTool;.\src\MTouch;.\src\MAction;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -66,6 +66,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\ImageMgr.cpp" />
+    <ClCompile Include="src\MAction\MActionManager.cpp" />
+    <ClCompile Include="src\MAction\MActions.cpp" />
     <ClCompile Include="src\MApplication.cpp" />
     <ClCompile Include="src\MCommonFunction.cpp" />
     <ClCompile Include="src\MDirector.cpp" />
@@ -82,6 +84,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ImageMgr.h" />
+    <ClInclude Include="src\MAction\MActionManager.h" />
+    <ClInclude Include="src\MAction\MActions.h" />
+    <ClInclude Include="src\MAction\MActionTarget.h" />
+    <ClInclude Include="src\MAction\MOpacityProtocol.h" />
     <ClInclude Include="src\MApplication.h" />
     <ClInclude Include="src\MApplicationProtocol.h" />
     <ClInclude Include="src\MCommonFunction.h" />
@@ -97,12 +103,12 @@
     <ClInclude Include="src\MSchedule.h" />
     <ClInclude Include="src\MShap.h" />
     <ClInclude Include="src\MSprite.h" />
+    <ClInclude Include="src\MTool\MInterpolation.h" />
     <ClInclude Include="src\MTool\MSingleton.h" />
     <ClInclude Include="src\MTouch\MTouchControl.h" />
     <ClInclude Include="src\MTouch\MTouchProtocol.h" />
     <ClInclude Include="src\MyDef.h" />
     <ClInclude Include="src\MyGraphics.h" />
-    <ClInclude Include="src\MyGraphicsProtocol.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

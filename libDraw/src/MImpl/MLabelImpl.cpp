@@ -51,7 +51,8 @@ void  MLabelImpl::setPosition(const MPoint& _p)
 
 void MLabelImpl::drawStr(const char* _str)
 {
-	wchar_t* wstr = cFunction::utf8ToUnicode(_str);
-	m_g->getGraphics()->DrawString(wstr, 5, m_font, Gdiplus::PointF(m_point.x, m_point.y), m_brush);
+	int nLen = 0;
+	wchar_t* wstr = cFunction::utf8ToUnicode(_str, nLen);
+	m_g->getGraphics()->DrawString(wstr, nLen, m_font, Gdiplus::PointF(m_point.x, m_point.y), m_brush);
 	delete[] wstr;
 }

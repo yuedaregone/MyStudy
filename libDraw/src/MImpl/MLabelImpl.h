@@ -4,7 +4,7 @@
 #include "MShap.h"
 #include <gdiplus.h>
 
-class MLabelImpl
+class CC_DLL MLabelImpl
 {
 public:
 	MLabelImpl();

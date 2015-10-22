@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 class Gdiplus::Image;
-class ImageMgr
+class CC_DLL ImageMgr
 {
 public:
 	ImageMgr(void);
@@ -17,7 +17,7 @@ public:
 private:	
 	Gdiplus::Image* LoadResImage(LPCTSTR lpName, LPCTSTR lpType);	
 private:
-	std::map<int, Gdiplus::Image*> m_images;
+	std::map<int, Gdiplus::Image*>* m_images;
 };
 
 #define g_imageMgr MSingleton<ImageMgr>::getInstance()

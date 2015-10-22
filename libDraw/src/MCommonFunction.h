@@ -5,11 +5,11 @@
 #include "MShap.h"
 namespace cFunction
 {
-	struct tm getCurTime();
-	bool isFloatEqual(float _a, float _b);
-	wchar_t* utf8ToUnicode(const char* _str);
-	char* UnicodeToUtf8(const wchar_t* _str);
-	float getDistancePower(const MPoint& _p1, const MPoint& _p2);
-	void MLog(const char * pszFormat, ...);
+	CC_DLL struct tm getCurTime();
+	CC_DLL bool isFloatEqual(float _a, float _b);
+	CC_DLL wchar_t* utf8ToUnicode(const char* _str, int& _len);
+	CC_DLL char* UnicodeToUtf8(const wchar_t* _str);
+	CC_DLL float getDistancePower(const MPoint& _p1, const MPoint& _p2);
+	CC_DLL void MLog(const char * pszFormat, ...);
 };
 #endif

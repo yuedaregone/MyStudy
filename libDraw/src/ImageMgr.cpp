@@ -4,19 +4,21 @@
 using namespace Gdiplus;
 
 ImageMgr::ImageMgr(void)
-{	
+{
+	m_images = new std::map<int, Gdiplus::Image*>();
 }
 
 
 ImageMgr::~ImageMgr(void)
 {
+	delete m_images;
 }
 
 void ImageMgr::LoadMyImage(int _begin, int _end, const char* _type)
 {	
 	for (int i = _begin; i <= _end; ++i)
 	{
-		m_images[i] = LoadResImage(LPCTSTR(i), TEXT(_type));
+		m_images->insert(std::map<int, Gdiplus::Image*>::value_type(i, LoadResImage(LPCTSTR(i), TEXT(_type))));
 	}
 }
 
@@ -25,15 +27,15 @@ void ImageMgr::LoadMyImage(std::vector<int>& _vKeys, const char* _type)
 	for (std::vector<int>::iterator it = _vKeys.begin(); it != _vKeys.end(); ++it)
 	{
 		int key = *it;
-		m_images[key] = LoadResImage(LPCTSTR(key), TEXT(_type));
+		m_images->insert(std::map<int, Gdiplus::Image*>::value_type(key, LoadResImage(LPCTSTR(key), TEXT(_type))));
 	}
 }
 
 Image* ImageMgr::getImageByKey(int index)
 {
-	if (m_images.find(index) == m_images.end())
+	if (m_images->find(index) == m_images->end())
 		return NULL;
-	return m_images[index];
+	return (*m_images)[index];
 }
 
 Image* ImageMgr::LoadResImage(LPCTSTR lpName,LPCTSTR lpType)

@@ -3,7 +3,7 @@
 #include "MyGraphics.h"
 #include "MShap.h"
 #include <gdiplus.h>
-class MSpriteImpl
+class CC_DLL MSpriteImpl
 {
 public:
 	MSpriteImpl();

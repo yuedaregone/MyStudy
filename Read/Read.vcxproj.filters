@@ -40,10 +40,10 @@
       <Filter>res</Filter>
     </Image>
     <Image Include="res\png1.png">
-      <Filter>src</Filter>
+      <Filter>res</Filter>
     </Image>
     <Image Include="res\yimin_title.png">
-      <Filter>src</Filter>
+      <Filter>res</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

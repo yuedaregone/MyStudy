@@ -2,7 +2,7 @@
 #define __MSCENE_H__
 #include "MNode.h"
 
-class MScene : public MNode
+class CC_DLL MScene : public MNode
 {
 public:
 	MScene();

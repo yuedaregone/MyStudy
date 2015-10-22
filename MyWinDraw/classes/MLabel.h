@@ -19,7 +19,7 @@ private:
 	virtual void draw();
 private:
 	MLabelImpl* m_labelImpl;
-	std::string m_str;
+	std::string* m_str;
 	uint m_fontSize;
 	MColor m_color;
 };

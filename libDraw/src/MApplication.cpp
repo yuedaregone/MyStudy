@@ -5,9 +5,9 @@
 void MApplication::mOnInit(int x, int y, int w, int h)
 {
 	appBeforLaunch();
-	SetWindowPos(m_hwnd, 0, x, y, w, h, SWP_SHOWWINDOW);//使用窗口总在最上
+	SetWindowPos(m_hwnd, HWND_TOPMOST, x, y, w, h, SWP_SHOWWINDOW);//使用窗口总在最上
 	
-	Gdiplus::GdiplusStartup(&m_gdiplusToken, &gdiplusStartupInput, NULL);//初始化DGI
+	Gdiplus::GdiplusStartup(&m_gdiplusToken, gdiplusStartupInput, NULL);//初始化DGI
 	g_mDirector->setWPos(x,y);
 	mSetHW(w, h);
 	g_mDirector->setWnd(m_hwnd);

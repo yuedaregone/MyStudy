@@ -1,7 +1,7 @@
 #ifndef __MAPPLICATIONPROTOCOL_H__
 #define __MAPPLICATIONPROTOCOL_H__
-
-class MApplicationProtocol
+#include "MPlatform.h"
+class CC_DLL MApplicationProtocol
 {
 public:
 	virtual ~MApplicationProtocol(){};	

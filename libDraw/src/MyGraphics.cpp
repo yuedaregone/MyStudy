@@ -2,7 +2,14 @@
 #include <time.h> 
 #include <windows.h>
 #include "MDirector.h"
+#include "MActions.h"
+#include "MActionManager.h"
 
+MyGraphics::MyGraphics()
+	: m_clearColor(0,0,0,0)
+	, m_srcAlpha(255)
+{
+}
 
 void MyGraphics::init(HWND _wnd)
 {
@@ -26,33 +33,23 @@ void MyGraphics::destroy()
 	::DeleteObject(m_bitMap);
 }
 
-void  MyGraphics::update()
-{	
-	//int hour, minute, second;
-	//getCurTime(hour, minute, second);	
-	//if (m_scecond != second)
-	//{
-		//m_graphics->Clear(Color(0, 0, 0, 0));
-		//DrawNum(hour, 0, 0);
-		//DrawNum(minute, 60, 0);
-		//DrawNum(second, 120, 0, true);
-	//return;
-		render();
-	//}	
+void  MyGraphics::update(float dt)
+{
+	render();	
 }
 
 void MyGraphics::clear()
 {
-	m_graphics->Clear(Color(255, 255, 255, 255));
+	m_graphics->Clear(Color(m_clearColor.m_a, m_clearColor.m_r, m_clearColor.m_g, m_clearColor.m_b));
 }
 
-void  MyGraphics::render()
+void MyGraphics::render()
 {
 	BLENDFUNCTION _Blend;
 	_Blend.BlendOp = 0;
 	_Blend.BlendFlags = 0;
-	_Blend.AlphaFormat = 0.5;
-	_Blend.SourceConstantAlpha = 255;
+	_Blend.AlphaFormat = 1;
+	_Blend.SourceConstantAlpha = m_srcAlpha;
 
 	RECT rect;
 	GetWindowRect(m_wnd, &rect);
@@ -78,6 +75,7 @@ MPoint MyGraphics::convertPoint(MPoint& _point)
 	g_mDirector->convertPointToGLPoint(point);
 	return point;
 }
+
 
 void  MyGraphics::getCurTime(int &hour, int &minute, int &second)
 {
@@ -107,4 +105,11 @@ void MyGraphics::DrawNum(int num, int _x, int _y, bool _isSec)
 void MyGraphics::drawImage(Image* _img, const MPoint& _p, const MSize& _s)
 {
 	m_graphics->DrawImage(_img, _p.x, _p.y, _s.w, _s.h);
+}
+
+void MyGraphics::runAction(MAction* _action)
+{
+	MActionTarget::runAction(_action);
+	_action->setTarget(this);
+	g_mDirector->getActionManager()->addAction(_action);
 }

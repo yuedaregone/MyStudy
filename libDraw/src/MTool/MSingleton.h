@@ -1,8 +1,8 @@
 #ifndef __MSINGLETON_H__
 #define __MSINGLETON_H__
-
+#include "MPlatform.h"
 template<class T>
-class MSingleton
+class CC_DLL MSingleton
 {
 public:
 	static T* getInstance()

@@ -4,7 +4,7 @@
 #include <string>
 #include <stdio.h>
 #include "./MImpl/MLabelImpl.h"
-class MLabel : public MNode
+class CC_DLL MLabel : public MNode
 {
 public:
 	MLabel();
@@ -19,7 +19,7 @@ private:
 	virtual void draw();
 private:
 	MLabelImpl* m_labelImpl;
-	std::string m_str;
+	std::string* m_str;
 	uint m_fontSize;
 	MColor m_color;
 };

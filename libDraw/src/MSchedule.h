@@ -1,11 +1,12 @@
 #ifndef __MSCHEDULE_H__
 #define __MSCHEDULE_H__
 #include <stdio.h>
+#include "MPlatform.h"
 
 class MNode;
 typedef void (MNode::*SEL_Update)(float dt);
 
-class MSchedule
+class CC_DLL MSchedule
 {
 public:
 	MSchedule() :m_timeGap(0.0f), m_timeCur(0.0f), m_selUpdate(NULL), m_obj(NULL){};	

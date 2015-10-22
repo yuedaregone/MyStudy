@@ -1,7 +1,7 @@
 #ifndef __MSHAP_H__
 #define __MSHAP_H__
 #include "MPlatform.h"
-class MPoint
+class CC_DLL MPoint
 {
 public:
 	MPoint() : x(0.0f), y(0.0f){};
@@ -29,7 +29,7 @@ public:
 #define MPointZore MPoint(0.0f, 0.0f)
 #define mp(x,y) MPoint(x,y)
 
-class MSize
+class CC_DLL MSize
 {
 public:
 	MSize() : w(0.0f), h(0.0f){};
@@ -50,7 +50,7 @@ public:
 #define MSizeZore MSize(0.0f, 0.0f)
 #define ms(w,h) MSize(x,y)
 
-class MRect
+class CC_DLL MRect
 {
 public:
 	MRect() : m_p(0.0f, 0.0f), m_s(0.0f, 0.0f){};
@@ -71,7 +71,7 @@ public:
 #define MRectZore MRect(0.0f, 0.0f, 0.0f, 0.0f)
 #define mr(x,y,w,h) MRect(x,y,w,h)
 
-class MColor
+class CC_DLL MColor
 {
 public:
 	MColor() :m_a(255), m_r(255), m_g(255), m_b(255){};

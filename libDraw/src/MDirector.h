@@ -3,7 +3,8 @@
 #include "MScene.h"
 #include <windows.h>
 
-class MDirector
+class MActionManager;
+class CC_DLL MDirector
 {
 public:
 	MDirector();
@@ -32,6 +33,7 @@ public:
 	MPoint& getMidPoint() { return m_midPoint; }
 	void convertPointToGLPoint(MPoint& _point);
 	void isShowFPS(bool _isShow) { m_fpsShow = _isShow; }
+	MActionManager* getActionManager();
 private:
 	static MDirector* m_director;
 	MScene* m_curScene;
@@ -51,6 +53,7 @@ private:
 	float m_fDelayTime;
 	int m_uFrames;
 	bool m_fpsShow;
+	MActionManager* m_gActManager;
 private: 
 	void showFPS(float _dt);
 };

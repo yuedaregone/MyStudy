@@ -1,16 +1,18 @@
 #ifndef __MAPPLICATION_H__
 #define __MAPPLICATION_H__
 #include "MyDef.h"
-#include "MyGraphicsProtocol.h"
 #include "MApplicationProtocol.h"
-class MApplication : public MApplicationProtocol
+class CC_DLL MApplication : public MApplicationProtocol
 {
 public:
-	MApplication() {};
+	MApplication() 
+	{
+		gdiplusStartupInput = new Gdiplus::GdiplusStartupInput();
+	}
 	virtual ~MApplication() {};
 private:
 	ULONG_PTR m_gdiplusToken;
-	Gdiplus::GdiplusStartupInput gdiplusStartupInput;	
+	Gdiplus::GdiplusStartupInput* gdiplusStartupInput;	
 public:	
 	virtual void appBeforLaunch() = 0;
 	virtual void appLaunchFinish() = 0;

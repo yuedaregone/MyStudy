@@ -18,7 +18,8 @@ m_pTitleName(""),
 m_isAccurite(false),
 m_timerGap(100),
 m_iconID(IDI_APPLICATION),
-m_app(NULL)
+m_app(NULL),
+m_isTouch(false)
 {
 	m_rect.left = -1;
 	m_rect.right = -1;
@@ -47,7 +48,7 @@ void MWindow::mSetIcon(long _icon)
 	m_iconID = MAKEINTRESOURCE(_icon);
 }
 
-void MWindow::mSetRect(RECT &_rect)
+void MWindow::mSetStartRect(RECT &_rect)
 {
 	m_rect = _rect;
 }
@@ -82,7 +83,7 @@ void MWindow::mWndClass()
 {
 	memset(&m_wc, 0, sizeof(m_wc));
 	m_wc.cbSize = sizeof(WNDCLASSEX);
-	m_wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+	m_wc.hIconSm = LoadIcon(NULL, IDI_SHIELD);
 	m_wc.style = CS_HREDRAW | CS_VREDRAW;
 	m_wc.lpfnWndProc = (WNDPROC)WindowProc;
 	m_wc.cbClsExtra = 0;
@@ -190,8 +191,14 @@ LRESULT CALLBACK MWindow::mOnWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 	switch (uMsg)
 	{
 	case WM_LBUTTONDOWN:
+		SetCapture(m_hwnd);
 		::SendMessageA(m_hwnd, WM_SYSCOMMAND, 0xF012, 0);
 		break;
+	case WM_MOUSEMOVE:
+		break;
+	case WM_LBUTTONUP:
+		ReleaseCapture();
+		break;	
 	case WM_TIMER:
 		mOnTimer();
 		break;

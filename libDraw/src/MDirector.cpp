@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "MyGraphics.h"
 #include "MCommonFunction.h"
+#include "MActionManager.h"
 
 MDirector* MDirector::m_director = NULL;
 
@@ -15,6 +16,7 @@ MDirector::MDirector()
 	,m_fpsShow(true)
 	,m_wPosX(0)
 	,m_wPosY(0)
+	,m_gActManager(NULL)
 {}
 
 MDirector::~MDirector()
@@ -85,11 +87,13 @@ void MDirector::drawScene(LONGLONG _gap)
 {	
 	float dt = _gap / static_cast<float>(nFeq.QuadPart);
 	m_curScene->update(dt);
+	if (m_gActManager)
+		m_gActManager->update(dt);
 	m_graphics->clear();
 	m_curScene->visit();	
 	if (m_fpsShow)
 		showFPS(dt);
-	m_graphics->update();
+	m_graphics->update(dt);
 }
 
 void MDirector::runWithScene(MScene* _scene)
@@ -118,4 +122,13 @@ void MDirector::showFPS(float _dt)
 		m_uFrames = 0;
 		m_fDelayTime = 0.0f;
 	}
+}
+
+MActionManager* MDirector::getActionManager()
+{
+	if (!m_gActManager)
+	{
+		m_gActManager = new MActionManager();
+	}
+	return m_gActManager;
 }

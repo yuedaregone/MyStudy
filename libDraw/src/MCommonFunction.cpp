@@ -21,7 +21,7 @@ namespace cFunction
 		return false;
 	}
 
-	wchar_t* utf8ToUnicode(const char* _str)
+	wchar_t* utf8ToUnicode(const char* _str, int& _len)
 	{
 		int nLen = MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, _str, -1, NULL, 0);
 		if (nLen == 0)
@@ -29,7 +29,7 @@ namespace cFunction
 			return NULL;
 		}
 		wchar_t* pResult = new wchar_t[nLen];
-		MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, _str, -1, pResult, nLen);
+		_len = MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, _str, -1, pResult, nLen);
 		return pResult;
 	}
 

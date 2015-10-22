@@ -18,10 +18,11 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	rect.top = rect.bottom - APP_HEIGHT;
 	MApplicationProtocol* ap = new Applegate();
 	MWindow mw;
+	mw.mSetIsAccurite(true);
 	mw.registerApplication(ap);
 	mw.mSetIcon(IDI_ICON1);
 	mw.mSetTitle("Draw");
-	mw.mSetRect(rect);
+	mw.mSetStartRect(rect);
 	mw.mRun(hInstance, nCmdShow);
 	return 0;
 }

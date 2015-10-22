@@ -1,7 +1,7 @@
 #ifndef __MTOUCHPROTOCOL__H__
 #define __MTOUCHPROTOCOL__H__
 #include "../MShap.h"
-class MTouchProtocol
+class CC_DLL MTouchProtocol
 {
 public:
 	virtual ~MTouchProtocol() {}

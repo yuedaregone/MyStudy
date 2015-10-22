@@ -18,11 +18,7 @@ public:
 public:
 	static MScene* scene();
 	virtual void draw();	
-private:
-	MPoint m_pBottom[3];	
-	Gdiplus::Pen* m_pen;
-	int m_maxW;
-	int m_maxH;	
+private:	
 };
 
 #endif

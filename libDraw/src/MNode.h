@@ -15,7 +15,7 @@
 
 #define task_selector(SEL) ((SEL_Update)(&MNode::SEL))
 class MyGraphics;
-class MNode : public MObject
+class CC_DLL MNode : public MObject
 {
 public:
 	MNode();
@@ -51,14 +51,14 @@ protected:
 	virtual void draw();
 	void setWorldPoint();
 protected:
-	std::multimap<int, MNode*> m_childen;
+	std::multimap<int, MNode*>* m_childen;
 	uint m_tag;
 	int m_zorder;
 	MNode* m_parent;
 	MPoint m_worldPoint;
 	MPoint m_point;
 	MSize m_size;
-	std::vector<MSchedule*> m_vSchedule;
+	std::vector<MSchedule*>* m_vSchedule;
 	MyGraphics* m_graphics;
 };
 

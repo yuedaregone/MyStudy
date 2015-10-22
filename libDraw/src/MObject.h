@@ -3,12 +3,12 @@
 #include <stdio.h>
 #include "MPlatform.h"
 
-class MObject
+class CC_DLL MObject
 {
 public:	
 	MObject();
 	virtual ~MObject();	
-	void remove() { delete this; }	
+	virtual void remove() { delete this; }	
 private:
 	static int m_numOfObj;
 	uint m_objId;

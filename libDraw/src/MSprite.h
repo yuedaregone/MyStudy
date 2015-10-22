@@ -2,7 +2,7 @@
 #define __MSPRITE_H__
 #include "MNode.h"
 #include "MImpl/MSpriteImpl.h"
-class MSprite : public MNode
+class CC_DLL MSprite : public MNode
 {
 public:
 	MSprite();

@@ -12,9 +12,7 @@ public:
 	virtual ~MApplication() {};
 private:
 	ULONG_PTR m_gdiplusToken;
-	Gdiplus::GdiplusStartupInput gdiplusStartupInput;	
-
-	MyGraphicsProtocol* m_g;	
+	Gdiplus::GdiplusStartupInput gdiplusStartupInput;
 public:	
 	virtual void mOnInit();
 	virtual void mOnDestroy();

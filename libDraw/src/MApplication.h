@@ -2,12 +2,14 @@
 #define __MAPPLICATION_H__
 #include "MyDef.h"
 #include "MApplicationProtocol.h"
+#include "MDirector.h"
 class CC_DLL MApplication : public MApplicationProtocol
 {
 public:
 	MApplication() 
 	{
 		gdiplusStartupInput = new Gdiplus::GdiplusStartupInput();
+		g_mDirector->registerApplication(this);
 	}
 	virtual ~MApplication() {};
 private:
@@ -21,8 +23,8 @@ public:
 	virtual void mOnDestroy();
 	virtual void mOnTimer();
 	virtual void mOnMainLoop(); 
-	virtual void mSetHWND(void* _hwnd);
-
+	virtual void mSetHWND(void* _hwnd);	
+	virtual void mSetEnd(bool _isEnd);
 	void mSetHW(int _w, int _h);
 private:
 	HWND m_hwnd;

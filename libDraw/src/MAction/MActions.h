@@ -18,6 +18,7 @@ public:
 		, m_isEnd(false)
 		, m_num(1)
 	{
+		addAction();
 	}
 	MAction(float _delay)
 		: m_past(0.0f)
@@ -26,8 +27,12 @@ public:
 		, m_target(NULL)
 		, m_isEnd(false)
 		, m_num(1)
-	{}
-	virtual ~MAction() {}
+	{
+		addAction();
+	}
+	virtual ~MAction() {
+		reduceAction();
+	}
 public:
 	virtual void update(float dt) = 0;	
 	void setManager(MActionManager* _manager) { m_actManager = _manager; }
@@ -42,6 +47,10 @@ protected:
 	MActionTarget* m_target;
 	bool m_isEnd;
 	int m_num;
+	static int m_actSum;
+private:
+	static void addAction();	
+	static void reduceAction();
 };
 
 

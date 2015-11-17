@@ -4,6 +4,7 @@
 #include <windows.h>
 
 class MActionManager;
+class MApplicationProtocol;
 class CC_DLL MDirector
 {
 public:
@@ -34,6 +35,10 @@ public:
 	void convertPointToGLPoint(MPoint& _point);
 	void isShowFPS(bool _isShow) { m_fpsShow = _isShow; }
 	MActionManager* getActionManager();
+	void registerApplication(MApplicationProtocol* _app) { m_app = _app; }
+	void setApplicationAccurite(bool _isAccurite);
+	bool isApplicationAccurite();
+	void end();
 private:
 	static MDirector* m_director;
 	MScene* m_curScene;
@@ -54,6 +59,7 @@ private:
 	int m_uFrames;
 	bool m_fpsShow;
 	MActionManager* m_gActManager;
+	MApplicationProtocol* m_app;
 private: 
 	void showFPS(float _dt);
 };

@@ -14,26 +14,29 @@ public:
 	static MWindow *mGetWindow();
 	void mSetTitle(std::string _pTitleName);
 	void mSetIcon(long _icon);
-	void mSetStartRect(RECT &_rect);
-	void mSetIsAccurite(bool _isAccurite) { m_isAccurite = _isAccurite; }
+	void mSetStartRect(RECT &_rect);	
 	void mSetTimeGap(unsigned int _gap) { m_timerGap = _gap; }
 	void mRun(HINSTANCE _hInstance, int _nCmdShow);	
 	virtual void mWndClass();
 	virtual bool mCreateWindow();
 	virtual LRESULT CALLBACK mOnWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-public:
+protected:
 	virtual void mOnInit();
 	virtual void mOnMainLoop();
 	virtual void mOnEnd();
-	virtual void mOnDestroy();
+protected:
+	virtual void mOnClose();
 	virtual void mOnTimer();
 	virtual void mOnPaint(HDC _dc);
 	virtual void mOnButtonClick(HWND hWnd, int id, HWND hwndCtl, UINT codeNotify);
+	virtual void mOnDropFile(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 private:
 	bool mRegisterClass();
 	bool mWindowInit();
 	void mWindowLoop();
 	void mWindowEnd();
+	void mRestLoop();
+
 protected:
 	HINSTANCE		m_hinstance;
 	HWND			m_hwnd;
@@ -42,12 +45,17 @@ protected:
 	std::string		m_pTitleName;
 	static MWindow*	m_instance;
 	RECT			m_rect;
-	bool			m_isAccurite;
 	unsigned int	m_timerGap;	
 	LPSTR			m_iconID;
 	bool			m_isTouch;
+	bool			m_isAccuriteCache;
+	bool			m_isClose;
 public:
-	void registerApplication(MApplicationProtocol* _app) { m_app = _app; }
+	void registerApplication(MApplicationProtocol* _app) 
+	{ 
+		m_app = _app; 
+		m_isAccuriteCache = m_app->mIsAccurite();
+	}
 protected:
 	MApplicationProtocol* m_app;
 };

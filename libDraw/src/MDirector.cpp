@@ -3,6 +3,7 @@
 #include "MyGraphics.h"
 #include "MCommonFunction.h"
 #include "MActionManager.h"
+#include "MApplicationProtocol.h"
 
 MDirector* MDirector::m_director = NULL;
 
@@ -17,6 +18,7 @@ MDirector::MDirector()
 	,m_wPosX(0)
 	,m_wPosY(0)
 	,m_gActManager(NULL)
+	,m_app(NULL)
 {}
 
 MDirector::~MDirector()
@@ -131,4 +133,29 @@ MActionManager* MDirector::getActionManager()
 		m_gActManager = new MActionManager();
 	}
 	return m_gActManager;
+}
+
+void MDirector::setApplicationAccurite(bool _isAccurite)
+{
+	if (m_app)
+	{
+		m_app->mSetIsAccurite(_isAccurite);
+	}
+}
+
+bool MDirector::isApplicationAccurite()
+{
+	if (m_app)
+	{
+		return m_app->mIsAccurite();
+	}
+	return false;
+}
+
+void MDirector::end()
+{
+	if (m_app)
+	{
+		m_app->mSetEnd(true);
+	}
 }

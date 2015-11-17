@@ -18,6 +18,8 @@ void HelloWorld::init()
 {	
 	MNode::init();		
 
+	//g_mDirector->getGraphics()->setClearColor(MColor(255,255,255,255));
+
 	MLabel* label = MLabel::create("qwretdfhgf", 16, MColor(255, 0, 0));
 	this->addChild(label, 4);
 	label->setPoint(MPoint(0,300));	

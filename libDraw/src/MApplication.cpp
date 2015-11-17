@@ -18,7 +18,7 @@ void MApplication::mOnInit(int x, int y, int w, int h)
 void MApplication::mOnDestroy()
 {
 	Gdiplus::GdiplusShutdown(m_gdiplusToken);//Ð¶ÔØGDI
-	g_mDirector->destoy();
+	//g_mDirector->destoy();
 }
 
 void MApplication::mOnTimer()
@@ -44,4 +44,13 @@ void MApplication::mSetHW(int _w, int _h)
 		_h = GetSystemMetrics(SM_CYSCREEN);
 	}
 	g_mDirector->setWH(_w, _h);
+}
+
+void MApplication::mSetEnd(bool _isEnd)
+{
+	MApplicationProtocol::mSetEnd(_isEnd);
+	if (_isEnd)
+	{
+		::PostMessage(m_hwnd, WM_QUIT, 0, 0);
+	}
 }

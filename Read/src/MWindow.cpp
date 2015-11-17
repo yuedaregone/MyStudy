@@ -15,11 +15,11 @@ m_hinstance(NULL),
 m_hwnd(NULL),
 m_pClassName("MWindow"),
 m_pTitleName(""),
-m_isAccurite(false),
 m_timerGap(100),
 m_iconID(IDI_APPLICATION),
 m_app(NULL),
-m_isTouch(false)
+m_isTouch(false),
+m_isClose(false)
 {
 	m_rect.left = -1;
 	m_rect.right = -1;
@@ -142,33 +142,55 @@ void MWindow::mWindowLoop()
 {
 	MSG msg;
 	memset(&msg, 0, sizeof(msg));
-
-	if (m_isAccurite)
+	
+	while (TRUE)
 	{
-		while (TRUE)
+		if (m_app->mIsAccurite())
 		{
-			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+			while (TRUE)
+			{
+				if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+				{
+					if (msg.message == WM_QUIT)
+						break;
+
+					TranslateMessage(&msg);
+					DispatchMessage(&msg);
+				}
+				mOnMainLoop();
+
+				if (m_isAccuriteCache != m_app->mIsAccurite())
+				{
+					m_isAccuriteCache = m_app->mIsAccurite();
+					mRestLoop();
+					break;
+				}
+			}
+		}
+		else
+		{
+			while (GetMessage(&msg, NULL, 0, 0))
 			{
 				if (msg.message == WM_QUIT)
 					break;
 
 				TranslateMessage(&msg);
 				DispatchMessage(&msg);
-			}
-			mOnMainLoop();
-		}
-	}
-	else
-	{
-		while (GetMessage(&msg, NULL, 0, 0))
-		{
-			if (msg.message == WM_QUIT)
-				break;
 
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
+				if (m_isAccuriteCache != m_app->mIsAccurite())
+				{
+					m_isAccuriteCache = m_app->mIsAccurite();
+					mRestLoop();
+					break;
+				}
+			}
 		}
-	}	
+
+		if (m_isClose || m_app->mIsEnd())
+		{			
+			break;
+		}
+	}		
 }
 
 void MWindow::mWindowEnd()
@@ -185,14 +207,9 @@ LRESULT CALLBACK MWindow::mOnWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 
 	switch (uMsg)
 	{
-		HANDLE_MSG(hWnd, WM_COMMAND, MWindow::mOnButtonClick);
-	}
-
-	switch (uMsg)
-	{
 	case WM_LBUTTONDOWN:
-		SetCapture(m_hwnd);
-		::SendMessageA(m_hwnd, WM_SYSCOMMAND, 0xF012, 0);
+		SetCapture(hWnd);
+		::SendMessageA(hWnd, WM_SYSCOMMAND, 0xF012, 0);
 		break;
 	case WM_MOUSEMOVE:
 		break;
@@ -202,6 +219,9 @@ LRESULT CALLBACK MWindow::mOnWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 	case WM_TIMER:
 		mOnTimer();
 		break;
+	case WM_DROPFILES:
+		mOnDropFile(hWnd, uMsg, wParam, lParam);
+		break;
 	case WM_PAINT:
 		hdc = BeginPaint(m_hwnd, &ps);
 		mOnPaint(hdc);
@@ -210,6 +230,7 @@ LRESULT CALLBACK MWindow::mOnWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 	case WM_SIZE:
 		break;
 	case WM_CLOSE:
+		mOnClose();
 		DestroyWindow(m_hwnd);		
 		return true;
 	case WM_DESTROY:
@@ -222,12 +243,12 @@ LRESULT CALLBACK MWindow::mOnWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 }
 
 void MWindow::mOnInit()
-{
+{	
 	if (m_app)
 	{
 		m_app->mOnInit(m_rect.left, m_rect.top, m_rect.right - m_rect.left, m_rect.bottom - m_rect.top);
 	}
-	if (!m_isAccurite)
+	if (!m_isAccuriteCache)
 		::SetTimer(m_hwnd, ID_TIMER, (UINT)m_timerGap, NULL);
 }
 
@@ -239,16 +260,29 @@ void MWindow::mOnMainLoop()
 	}
 }
 
-void MWindow::mOnEnd()
+void MWindow::mRestLoop()
 {
+	if (m_isAccuriteCache)
+	{
+		::KillTimer(m_hwnd, ID_TIMER);		
+	}
+	else
+	{
+		::SetTimer(m_hwnd, ID_TIMER, (UINT)m_timerGap, NULL);
+	}
 }
 
-void MWindow::mOnDestroy()
-{
+void MWindow::mOnEnd()
+{		
 	if (m_app)
 	{
 		m_app->mOnDestroy();
 	}
+}
+
+void MWindow::mOnClose()
+{
+	m_isClose = true;	
 }
 
 void MWindow::mOnTimer()
@@ -268,4 +302,9 @@ void MWindow::mOnPaint(HDC _dc)
 
 void MWindow::mOnButtonClick(HWND hWnd, int id, HWND hwndCtl, UINT codeNotify)
 {
+}
+
+void MWindow::mOnDropFile(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+
 }

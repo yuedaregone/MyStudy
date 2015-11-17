@@ -3,6 +3,24 @@
 #include "MActionManager.h"
 #include "MCommonFunction.h"
 #include "MActionTarget.h"
+#include "MDirector.h"
+
+int MAction::m_actSum = 0;
+
+void MAction::addAction()
+{
+	++m_actSum;
+	g_mDirector->setApplicationAccurite(true);
+}
+
+void MAction::reduceAction()
+{
+	--m_actSum;
+	if (m_actSum<=0)
+	{
+		g_mDirector->setApplicationAccurite(false);
+	}
+}
 
 void MAction::remove()
 {

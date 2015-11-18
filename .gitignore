@@ -54,3 +54,5 @@ Release/MyWinDraw.pdb
 *.tlog
 *.suo
 MyStudy.v12.suo
+*.sdf
+

@@ -39,6 +39,9 @@ public:
 	void setApplicationAccurite(bool _isAccurite);
 	bool isApplicationAccurite();
 	void end();
+	void registerDragFileCallback(MObject* _taget, DragFileCallBack _callback);
+	void unregiterDragFileCallback();
+	void invokeDraFileCallback(const std::vector<std::string>& files);
 private:
 	static MDirector* m_director;
 	MScene* m_curScene;
@@ -60,6 +63,8 @@ private:
 	bool m_fpsShow;
 	MActionManager* m_gActManager;
 	MApplicationProtocol* m_app;
+	DragFileCallBack m_dragFileCallback;
+	MObject* m_dragFileTarget;
 private: 
 	void showFPS(float _dt);
 };

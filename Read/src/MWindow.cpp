@@ -1,5 +1,6 @@
 #include "MWindow.h"
 #include <WindowsX.h>
+#include <vector>
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -98,7 +99,7 @@ void MWindow::mWndClass()
 bool MWindow::mCreateWindow()
 {
 	m_hwnd = CreateWindowEx(
-		WS_EX_TOPMOST | WS_EX_LAYERED,// | WS_EX_TRANSPARENT, 
+		WS_EX_TOPMOST | WS_EX_ACCEPTFILES | WS_EX_LAYERED,// | WS_EX_TRANSPARENT, 
 		TEXT(m_pClassName.c_str()),
 		TEXT(m_pTitleName.c_str()),
 		WS_POPUP | WS_VISIBLE | WS_SYSMENU,
@@ -209,18 +210,21 @@ LRESULT CALLBACK MWindow::mOnWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 	{
 	case WM_LBUTTONDOWN:
 		SetCapture(hWnd);
-		::SendMessageA(hWnd, WM_SYSCOMMAND, 0xF012, 0);
+		if (m_app) m_app->mTouchBegin(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+		//::SendMessageA(hWnd, WM_SYSCOMMAND, 0xF012, 0);
 		break;
 	case WM_MOUSEMOVE:
+		if (m_app) m_app->mTouchMove(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 		break;
 	case WM_LBUTTONUP:
+		if (m_app) m_app->mTouchEnd(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 		ReleaseCapture();
 		break;	
 	case WM_TIMER:
 		mOnTimer();
 		break;
 	case WM_DROPFILES:
-		mOnDropFile(hWnd, uMsg, wParam, lParam);
+		mOnDropFile((HDROP)wParam);
 		break;
 	case WM_PAINT:
 		hdc = BeginPaint(m_hwnd, &ps);
@@ -304,7 +308,21 @@ void MWindow::mOnButtonClick(HWND hWnd, int id, HWND hwndCtl, UINT codeNotify)
 {
 }
 
-void MWindow::mOnDropFile(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-
+void MWindow::mOnDropFile(HDROP dragHandle)
+{	
+	UINT nFiles = DragQueryFile(dragHandle, 0xFFFFFFFF, NULL, 0);	
+	char buff[256] = {0};
+	std::vector<std::string> fileNames;
+	for (UINT i = 0; i < nFiles; ++i)
+	{
+		UINT nRet = DragQueryFile(dragHandle, i, buff, 256);
+		if (nRet > 0)
+		{
+			fileNames.push_back(buff);
+		}
+	}
+	if (m_app)
+	{
+		m_app->mInvokeDragFile(fileNames);
+	}
 }

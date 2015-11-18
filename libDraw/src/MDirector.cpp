@@ -19,6 +19,8 @@ MDirector::MDirector()
 	,m_wPosY(0)
 	,m_gActManager(NULL)
 	,m_app(NULL)
+	,m_dragFileCallback(NULL)
+	,m_dragFileTarget(NULL)
 {}
 
 MDirector::~MDirector()
@@ -157,5 +159,25 @@ void MDirector::end()
 	if (m_app)
 	{
 		m_app->mSetEnd(true);
+	}
+}
+
+void MDirector::registerDragFileCallback(MObject* _taget, DragFileCallBack _callback)
+{
+	m_dragFileTarget = _taget;
+	m_dragFileCallback = _callback;
+}
+
+void MDirector::unregiterDragFileCallback()
+{
+	m_dragFileTarget = NULL;
+	m_dragFileCallback = NULL;
+}
+
+void MDirector::invokeDraFileCallback(const std::vector<std::string>& files)
+{
+	if (m_dragFileTarget && m_dragFileCallback)
+	{
+		(m_dragFileTarget->*m_dragFileCallback)(files);
 	}
 }

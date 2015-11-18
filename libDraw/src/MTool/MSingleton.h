@@ -24,9 +24,9 @@ public:
 	}
 protected:
 	static T* m_pInstance;
-private:
+protected:
 	MSingleton() {};
-	~MSingleton() {};
+	virtual ~MSingleton() {};
 };
 
 template<class T>

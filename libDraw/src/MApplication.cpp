@@ -1,6 +1,7 @@
 #include "MApplication.h"
 #include "MyGraphics.h"
 #include "MDirector.h"
+#include "MTouchControl.h"
 
 void MApplication::mOnInit(int x, int y, int w, int h)
 {
@@ -53,4 +54,24 @@ void MApplication::mSetEnd(bool _isEnd)
 	{
 		::PostMessage(m_hwnd, WM_QUIT, 0, 0);
 	}
+}
+
+void MApplication::mInvokeDragFile(const std::vector<std::string>& files)
+{
+	g_mDirector->invokeDraFileCallback(files);
+}
+
+void MApplication::mTouchBegin(int x, int y)
+{
+	g_mTouchControl->mTouchBegin(MPoint((float)x, (float)y));
+}
+
+void MApplication::mTouchMove(int x, int y)
+{
+	g_mTouchControl->mTouchMove(MPoint((float)x, (float)y));
+}
+
+void MApplication::mTouchEnd(int x, int y)
+{
+	g_mTouchControl->mTouchEnd(MPoint((float)x, (float)y));
 }

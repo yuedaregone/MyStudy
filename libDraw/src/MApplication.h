@@ -26,6 +26,11 @@ public:
 	virtual void mSetHWND(void* _hwnd);	
 	virtual void mSetEnd(bool _isEnd);
 	void mSetHW(int _w, int _h);
+	void mInvokeDragFile(const std::vector<std::string>& files);
+
+	virtual void mTouchBegin(int x, int y);
+	virtual void mTouchMove(int x, int y);
+	virtual void mTouchEnd(int x, int y);
 private:
 	HWND m_hwnd;
 };

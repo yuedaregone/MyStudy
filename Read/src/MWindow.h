@@ -29,7 +29,7 @@ protected:
 	virtual void mOnTimer();
 	virtual void mOnPaint(HDC _dc);
 	virtual void mOnButtonClick(HWND hWnd, int id, HWND hwndCtl, UINT codeNotify);
-	virtual void mOnDropFile(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+	virtual void mOnDropFile(HDROP dragHandle);
 private:
 	bool mRegisterClass();
 	bool mWindowInit();

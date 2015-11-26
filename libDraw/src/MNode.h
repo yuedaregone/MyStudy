@@ -12,10 +12,10 @@
 #include "MObject.h"
 #include "MShap.h"
 #include "MSchedule.h"
-
+#include "MActionTarget.h"
 #define task_selector(SEL) ((SEL_Update)(&MNode::SEL))
 class MyGraphics;
-class CC_DLL MNode : public MObject
+class CC_DLL MNode : public MActionTarget
 {
 public:
 	MNode();
@@ -35,7 +35,13 @@ public:
 	const MPoint& getPoint() { return m_point; }
 	virtual void setPoint(const MPoint& _p);
 	const MSize& getSize() { return m_size; }
-	void setSize(const MSize& _s) { m_size = _s; }
+	virtual void setSize(const MSize& _s);
+	const MPoint& getAnchorPoint() { return m_anchorPoint; }
+	virtual void setAnchorPoint(const MPoint& _ap);
+	virtual void setScale(const MSize& _scale);	
+	const MSize& getRealSize() { return m_realSize; }
+	const MSize& getScale() { return m_scale; }
+	MRect boundingBox();
 public:
 	virtual void onEnter();
 	virtual void onExit();	
@@ -50,6 +56,8 @@ public:
 protected:
 	virtual void draw();
 	void setWorldPoint();
+	void resetRealPoint();
+	void resetRealSize();
 protected:
 	std::multimap<int, MNode*>* m_childen;
 	uint m_tag;
@@ -57,7 +65,11 @@ protected:
 	MNode* m_parent;
 	MPoint m_worldPoint;
 	MPoint m_point;
+	MPoint m_anchorPoint;
+	MPoint m_realPoint;
 	MSize m_size;
+	MSize m_realSize;
+	MSize m_scale;
 	std::vector<MSchedule*>* m_vSchedule;
 	MyGraphics* m_graphics;
 };

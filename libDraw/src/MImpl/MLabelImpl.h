@@ -11,15 +11,13 @@ public:
 	~MLabelImpl();
 	void init(MyGraphics* _g, uint _size, const MColor& _color);
 	void setColor(const MColor& _color);
-	void setSize(uint _size);
-	void setPosition(const MPoint& _p);
-	void drawStr(const char* _str);
+	void setSize(uint _size);	
+	void drawStr(const char* _str, const MPoint& _p);
 private:
 	MyGraphics* m_g;
 	Gdiplus::SolidBrush* m_brush;
 	Gdiplus::FontFamily* m_fFamily;
-	Gdiplus::Font* m_font;
-	MPoint m_point;
+	Gdiplus::Font* m_font;	
 	bool m_isInit;
 };
 

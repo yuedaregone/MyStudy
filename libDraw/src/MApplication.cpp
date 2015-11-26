@@ -6,7 +6,7 @@
 void MApplication::mOnInit(int x, int y, int w, int h)
 {
 	appBeforLaunch();
-	SetWindowPos(m_hwnd, HWND_TOPMOST, x, y, w, h, SWP_SHOWWINDOW);//使用窗口总在最上
+	SetWindowPos(m_hwnd, HWND_TOP, x, y, w, h, SWP_SHOWWINDOW);//使用窗口总在最上
 	
 	Gdiplus::GdiplusStartup(&m_gdiplusToken, gdiplusStartupInput, NULL);//初始化DGI
 	g_mDirector->setWPos(x,y);
@@ -61,9 +61,9 @@ void MApplication::mInvokeDragFile(const std::vector<std::string>& files)
 	g_mDirector->invokeDraFileCallback(files);
 }
 
-void MApplication::mTouchBegin(int x, int y)
+bool MApplication::mTouchBegin(int x, int y)
 {
-	g_mTouchControl->mTouchBegin(MPoint((float)x, (float)y));
+	return g_mTouchControl->mTouchBegin(MPoint((float)x, (float)y));
 }
 
 void MApplication::mTouchMove(int x, int y)

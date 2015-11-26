@@ -28,12 +28,6 @@ void MLabel::initLabel(const char* _str, uint _size, MColor _color)
 	m_labelImpl->init(g_mDirector->getGraphics(), m_fontSize, m_color);
 }
 
-void MLabel::setPoint(const MPoint& _p)
-{
-	MNode::setPoint(_p);
-	m_labelImpl->setPosition(m_worldPoint);
-}
-
 void MLabel::setString(const char* _str)
 {
 	m_str->assign(_str);
@@ -48,5 +42,10 @@ void MLabel::setColor(const MColor& _color)
 void MLabel::draw()
 {
 	MNode::draw();
-	m_labelImpl->drawStr(m_str->c_str());
+	m_labelImpl->drawStr(m_str->c_str(), m_realPoint);
+}
+
+void MLabel::setFontSize(uint _size)
+{
+	m_labelImpl->setSize(_size);
 }

@@ -20,7 +20,8 @@ m_timerGap(100),
 m_iconID(IDI_APPLICATION),
 m_app(NULL),
 m_isTouch(false),
-m_isClose(false)
+m_isClose(false),
+m_isCapture(false)
 {
 	m_rect.left = -1;
 	m_rect.right = -1;
@@ -99,7 +100,7 @@ void MWindow::mWndClass()
 bool MWindow::mCreateWindow()
 {
 	m_hwnd = CreateWindowEx(
-		WS_EX_TOPMOST | WS_EX_ACCEPTFILES | WS_EX_LAYERED,// | WS_EX_TRANSPARENT, 
+		WS_EX_TOPMOST | WS_EX_ACCEPTFILES | WS_EX_LAYERED, 
 		TEXT(m_pClassName.c_str()),
 		TEXT(m_pTitleName.c_str()),
 		WS_POPUP | WS_VISIBLE | WS_SYSMENU,
@@ -208,17 +209,26 @@ LRESULT CALLBACK MWindow::mOnWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 
 	switch (uMsg)
 	{
-	case WM_LBUTTONDOWN:
-		SetCapture(hWnd);
-		if (m_app) m_app->mTouchBegin(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-		//::SendMessageA(hWnd, WM_SYSCOMMAND, 0xF012, 0);
+	case WM_LBUTTONDOWN:		
+		if (m_app)
+		{
+			m_isCapture = m_app->mTouchBegin(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+			if (m_isCapture) 
+				SetCapture(m_hwnd);
+			else 
+				::SendMessageA(m_hwnd, WM_SYSCOMMAND, 0xF012, 0);							
+		}		
 		break;
 	case WM_MOUSEMOVE:
 		if (m_app) m_app->mTouchMove(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 		break;
-	case WM_LBUTTONUP:
-		if (m_app) m_app->mTouchEnd(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-		ReleaseCapture();
+	case WM_LBUTTONUP:		
+		if (m_isCapture)
+		{
+			if (m_app) m_app->mTouchEnd(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+			ReleaseCapture();
+		}
+		m_isCapture = false;
 		break;	
 	case WM_TIMER:
 		mOnTimer();

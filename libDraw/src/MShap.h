@@ -48,7 +48,7 @@ public:
 };
 
 #define MSizeZore MSize(0.0f, 0.0f)
-#define ms(w,h) MSize(x,y)
+#define ms(w,h) MSize(w,h)
 
 class CC_DLL MRect
 {
@@ -63,6 +63,16 @@ public:
 		return *this;
 	}
 	MRect(const MRect& _r) :m_p(_r.m_p), m_s(_r.m_s) {};
+	bool isContainPoint(const MPoint& _p)
+	{
+		float sx = _p.x - m_p.x;
+		float sy = _p.y - m_p.y;
+		if (sx > 0 && sx < m_s.w && sy > 0 && sy < m_s.h)
+		{
+			return true;
+		}
+		return false;
+	}
 public:
 	MPoint m_p;
 	MSize m_s;

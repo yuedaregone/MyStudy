@@ -63,7 +63,7 @@ void MTouchControl::unregisterTouch(MTouchProtocol* _touch)
 	}
 }
 
-void MTouchControl::mTouchBegin(const MPoint& _p)
+bool MTouchControl::mTouchBegin(const MPoint& _p)
 {
 	if (m_touches)
 	{
@@ -77,10 +77,12 @@ void MTouchControl::mTouchBegin(const MPoint& _p)
 				if (isTouch)
 				{
 					m_curTouch = *itr;
+					return true;
 				}
 			}
 		}
 	}
+	return false;
 }
 
 void MTouchControl::mTouchMove(const MPoint& _p)

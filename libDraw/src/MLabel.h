@@ -13,8 +13,8 @@ public:
 	static MLabel* create(const char* _str, uint _size, MColor _color = MColor(255, 255, 255));
 	void initLabel(const char* _str, uint _size, MColor _color = MColor(255, 255, 255));
 	void setString(const char* _str);
-	void setColor(const MColor& _color);
-	virtual void setPoint(const MPoint& _p);
+	void setColor(const MColor& _color);	
+	void setFontSize(uint _size);
 private:	
 	virtual void draw();
 private:

@@ -21,13 +21,14 @@ bool MSprite::initSprite(int _key)
 {
 	MNode::init();
 	m_key = _key;
-	m_spImpl->init(m_key);
-	m_size = m_spImpl->getContentSize();
+	MSize tempSize;
+	m_spImpl->init(m_key, tempSize);
+	setSize(tempSize);
 	return true;
 }
 
 void MSprite::draw()
 {
 	MNode::draw();
-	m_spImpl->drawImage(m_point);
+	m_spImpl->drawImage(m_realPoint, m_realSize);
 }

@@ -67,6 +67,9 @@
     <ClCompile Include="src\MAction\MActionManager.cpp">
       <Filter>src\MAction</Filter>
     </ClCompile>
+    <ClCompile Include="src\MButton.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ImageMgr.h">
@@ -146,6 +149,9 @@
     </ClInclude>
     <ClInclude Include="src\MAction\MActionTarget.h">
       <Filter>src\MAction</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MButton.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

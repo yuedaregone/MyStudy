@@ -69,6 +69,7 @@
     <ClCompile Include="src\MAction\MActionManager.cpp" />
     <ClCompile Include="src\MAction\MActions.cpp" />
     <ClCompile Include="src\MApplication.cpp" />
+    <ClCompile Include="src\MButton.cpp" />
     <ClCompile Include="src\MCommonFunction.cpp" />
     <ClCompile Include="src\MDirector.cpp" />
     <ClCompile Include="src\MImpl\MLabelImpl.cpp" />
@@ -90,6 +91,7 @@
     <ClInclude Include="src\MAction\MOpacityProtocol.h" />
     <ClInclude Include="src\MApplication.h" />
     <ClInclude Include="src\MApplicationProtocol.h" />
+    <ClInclude Include="src\MButton.h" />
     <ClInclude Include="src\MCommonFunction.h" />
     <ClInclude Include="src\MDirector.h" />
     <ClInclude Include="src\MDraw.h" />

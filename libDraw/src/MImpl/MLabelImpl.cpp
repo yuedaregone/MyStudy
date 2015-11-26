@@ -40,19 +40,13 @@ void MLabelImpl::setColor(const MColor& _color)
 void MLabelImpl::setSize(uint _size)
 {
 	SafeDelete(m_font);
-	m_font = new Gdiplus::Font(m_fFamily, (float)_size, FontStyleRegular, UnitPixel);
+	m_font = new Gdiplus::Font(m_fFamily, (float)_size, FontStyleRegular, UnitPixel);	
 }
 
-void  MLabelImpl::setPosition(const MPoint& _p)
-{
-	MPoint point = _p;
-	m_point = m_g->convertPoint(point);
-}
-
-void MLabelImpl::drawStr(const char* _str)
+void MLabelImpl::drawStr(const char* _str, const MPoint& _p)
 {
 	int nLen = 0;
 	wchar_t* wstr = cFunction::utf8ToUnicode(_str, nLen);
-	m_g->getGraphics()->DrawString(wstr, nLen, m_font, Gdiplus::PointF(m_point.x, m_point.y), m_brush);
+	m_g->getGraphics()->DrawString(wstr, nLen, m_font, Gdiplus::PointF(_p.x, _p.y), m_brush);
 	delete[] wstr;
 }

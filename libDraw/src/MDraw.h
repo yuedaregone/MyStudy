@@ -13,4 +13,5 @@
 #include "MSprite.h"
 #include "MyGraphics.h"
 #include "MActions.h"
+#include "MButton.h"
 #endif

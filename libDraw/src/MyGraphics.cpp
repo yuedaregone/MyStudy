@@ -22,6 +22,13 @@ void MyGraphics::init(HWND _wnd)
 	m_bitMap = ::CreateCompatibleBitmap(m_dstDC, g_mDirector->getWidth(), g_mDirector->getHeight());
 	::SelectObject(m_srcDC, m_bitMap);
 	m_graphics = new Graphics(m_srcDC);	
+	
+	m_Blend.BlendOp = AC_SRC_OVER;
+	m_Blend.BlendFlags = 0;
+	m_Blend.AlphaFormat = 0;
+	m_Blend.SourceConstantAlpha = m_srcAlpha;
+
+	m_originPos = { 0, 0 };
 }
 
 void MyGraphics::destroy()
@@ -45,21 +52,15 @@ void MyGraphics::clear()
 
 void MyGraphics::render()
 {
-	BLENDFUNCTION _Blend;
-	_Blend.BlendOp = 0;
-	_Blend.BlendFlags = 0;
-	_Blend.AlphaFormat = 1;
-	_Blend.SourceConstantAlpha = m_srcAlpha;
+	m_Blend.SourceConstantAlpha = m_srcAlpha;
 
 	RECT rect;
 	GetWindowRect(m_wnd, &rect);
 
-	POINT p = { rect.left, rect.top };
-	POINT p1 = {0, 0};
+	POINT p = { rect.left, rect.top };	
 	SIZE s = { rect.right - rect.left, rect.bottom - rect.top };
 	//鼠标会穿透窗体中Alpha值为0的区域
-	::UpdateLayeredWindow(m_wnd, m_dstDC, &p,
-		&s, m_srcDC, &p1, 0, &_Blend, ULW_ALPHA);
+	::UpdateLayeredWindow(m_wnd, m_dstDC, &p, &s, m_srcDC, &m_originPos, 0, &m_Blend, ULW_ALPHA);
 }
 
 MyGraphics* MyGraphics::clone()

@@ -38,6 +38,8 @@ private:
 	int m_scecond;
 	MColor m_clearColor;
 	BYTE m_srcAlpha;
+	BLENDFUNCTION m_Blend;
+	POINT m_originPos;
 private:
 	void getCurTime(int &hour, int &minute, int &second);
 	void DrawNum(int num, int _x, int _y, bool _isSec = false);

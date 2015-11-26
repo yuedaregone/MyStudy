@@ -9,6 +9,10 @@ MNode::MNode()
 	, m_size(0.0f, 0.0f)
 	, m_graphics(NULL)
 	, m_vSchedule(NULL)
+	, m_anchorPoint(0.0f, 0.0f)
+	, m_realPoint(0.0f, 0.0f)
+	, m_realSize(0.0f,0.0f)
+	, m_scale(1.0f, 1.0f)
 {
 	m_childen = new std::multimap<int, MNode*>();
 }
@@ -92,11 +96,48 @@ void MNode::setPoint(const MPoint& _p)
 	MAssert(m_parent != NULL);
 	m_point = _p;
 	setWorldPoint();
+	resetRealPoint();	
 	std::multimap<int, MNode*>::iterator it = m_childen->begin();
 	for (; it != m_childen->end(); ++it)
 	{
 		it->second->setWorldPoint();
+		it->second->resetRealPoint();
 	}
+}
+
+void MNode::setAnchorPoint(const MPoint& _ap)
+{
+	m_anchorPoint = _ap;
+	resetRealPoint();
+}
+
+void MNode::setSize(const MSize& _s)
+{
+	m_size = _s;
+	resetRealSize();
+	resetRealPoint();
+}
+
+void MNode::setScale(const MSize& _scale)
+{
+	m_scale = _scale;
+	resetRealSize();
+	resetRealPoint();
+}
+
+void MNode::resetRealPoint()
+{
+	m_realPoint = mp(m_worldPoint.x - m_realSize.w*m_anchorPoint.x, m_worldPoint.y - m_realSize.h*m_anchorPoint.y);
+}
+
+void MNode::resetRealSize()
+{
+	m_realSize = ms(m_size.w*m_scale.w, m_size.h*m_scale.h);
+}
+
+MRect MNode::boundingBox()
+{
+	return MRect(m_realPoint.x, m_realPoint.y, m_realSize.w, m_realSize.h);
 }
 
 void MNode::setWorldPoint()

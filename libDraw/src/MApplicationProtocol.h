@@ -19,7 +19,7 @@ public:
 	virtual bool mIsEnd() { return m_isEnd; }
 	virtual void mSetEnd(bool _isEnd) { m_isEnd = _isEnd; }
 	virtual void mInvokeDragFile(const std::vector<std::string>& files) = 0;
-	virtual void mTouchBegin(int x, int y) = 0;
+	virtual bool mTouchBegin(int x, int y) = 0;
 	virtual void mTouchMove(int x, int y) = 0;
 	virtual void mTouchEnd(int x, int y) = 0;
 protected:

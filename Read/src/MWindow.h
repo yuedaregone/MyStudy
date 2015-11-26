@@ -50,6 +50,7 @@ protected:
 	bool			m_isTouch;
 	bool			m_isAccuriteCache;
 	bool			m_isClose;
+	bool			m_isCapture;
 public:
 	void registerApplication(MApplicationProtocol* _app) 
 	{ 

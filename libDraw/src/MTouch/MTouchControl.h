@@ -14,7 +14,7 @@ public:
 	void registerTouchCallback(int priority, MTouchProtocol* _touch);
 	void unregisterTouch(MTouchProtocol* _touch);
 
-	void mTouchBegin(const MPoint& _p);
+	bool mTouchBegin(const MPoint& _p);
 	void mTouchMove(const MPoint& _p);
 	void mTouchEnd(const MPoint& _p);
 private:

@@ -52,6 +52,7 @@ Temporary Items
 Release/MyWinDraw.pdb
 *.obj
 *.tlog
+*.tlog/
 *.suo
 MyStudy.v12.suo
 *.sdf

@@ -1,13 +1,13 @@
-#include "Applegate.h"
+#include "AppDelegate.h"
 #include "HelloWorld.h"
 #include "MDraw.h"
 
-void Applegate::appBeforLaunch()
+void AppDelegate::appBeforLaunch()
 {
 	
 }
 
-void  Applegate::appLaunchFinish()
+void  AppDelegate::appLaunchFinish()
 {
 	g_mDirector->isShowFPS(true);	
 

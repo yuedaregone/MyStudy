@@ -184,12 +184,14 @@ void MNode::unscheduleAllTask()
 
 void MNode::update(float dt)
 {
-	if (!m_vSchedule) return;
-	for (std::vector<MSchedule*>::iterator it = m_vSchedule->begin();
-		it != m_vSchedule->end(); ++it)
+	if (m_vSchedule != NULL)
 	{
-		(*it)->update(dt);
-	}
+		for (std::vector<MSchedule*>::iterator it = m_vSchedule->begin();
+			it != m_vSchedule->end(); ++it)
+		{
+			(*it)->update(dt);
+		}
+	}	
 
 	std::multimap<int, MNode*>::iterator it = m_childen->begin();
 	for (; it != m_childen->end(); ++it)

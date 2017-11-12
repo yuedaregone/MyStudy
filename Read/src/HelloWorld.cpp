@@ -23,8 +23,8 @@ void HelloWorld::init()
 
 	label = MLabel::create("qwretdfhgf", 16, MColor(255, 0, 0));
 	this->addChild(label, 4);
-	label->setPoint(MPoint(0,0));	
-	label->setAnchorPoint(MPoint(0.5,0.3));
+	label->setPoint(MPoint(0.0f,0.0f));	
+	label->setAnchorPoint(MPoint(0.5f,0.3f));
 
 	//MSprite* sp = MSprite::createSprite(103);
 	//this->addChild(sp, 2);

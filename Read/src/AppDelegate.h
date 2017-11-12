@@ -1,8 +1,8 @@
-#ifndef __APPLEGATE_H__
-#define __APPLEGATE_H__
+#ifndef __APPDELEGATE_H__
+#define __APPDELEGATE_H__
 #include "MApplication.h"
 
-class Applegate : public MApplication
+class AppDelegate : public MApplication
 {
 public:
 	virtual void appBeforLaunch();

@@ -1,4 +1,4 @@
-#include "Applegate.h"
+#include "AppDelegate.h"
 #include "MDraw.h"
 #include "MWindow.h"
 #include "resource.h"
@@ -16,7 +16,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	rect.bottom = g_mDirector->getScreenHeight() - 50;
 	rect.right = APP_WIDTH;
 	rect.top = rect.bottom - APP_HEIGHT;
-	MApplicationProtocol* ap = new Applegate();
+	MApplicationProtocol* ap = new AppDelegate();
 	MWindow mw;
 	mw.registerApplication(ap);
 	//mw.mSetIcon(IDI_ICON1);

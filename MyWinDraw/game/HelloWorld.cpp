@@ -134,7 +134,6 @@ void Ball::resetBallPosition(Ball* _ball[], int n)
 
 void Ball::updatePosition(Ball* _ball[], int n)
 {
-	m_speedY += 0.0005f;
 	m_point.x += m_speedX;
 	m_point.y += m_speedY;
 	for (int i = e_type_up; i < e_type_unkown; ++i)

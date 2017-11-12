@@ -68,14 +68,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Applegate.cpp" />
+    <ClCompile Include="src\AppDelegate.cpp" />
     <ClCompile Include="src\HelloWorld.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="src\Applegate.h" />
+    <ClInclude Include="src\AppDelegate.h" />
     <ClInclude Include="src\HelloWorld.h" />
     <ClInclude Include="src\MWindow.h" />
   </ItemGroup>

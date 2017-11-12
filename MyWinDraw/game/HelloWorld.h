@@ -7,7 +7,7 @@
 #include "../classes/MScene.h"
 #include "../classes/MSprite.h"
 
-#define BALL_MAX_NUM 1
+#define BALL_MAX_NUM 10
 class Ball;
 class HelloWorld : public MNode
 {

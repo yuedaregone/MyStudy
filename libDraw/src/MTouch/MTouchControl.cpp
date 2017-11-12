@@ -54,10 +54,7 @@ void MTouchControl::unregisterTouch(MTouchProtocol* _touch)
 			if (it->second.empty())
 			{
 				it = m_touches->erase(it);
-			}
-			else
-			{
-				++it;
+				break;
 			}
 		}
 	}

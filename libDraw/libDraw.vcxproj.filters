@@ -25,9 +25,6 @@
     <ClCompile Include="src\MApplication.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\MCommonFunction.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\MDirector.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -70,15 +67,15 @@
     <ClCompile Include="src\MButton.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\MCommonFunction.cpp">
+      <Filter>src\MTool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ImageMgr.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\MApplication.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MCommonFunction.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\MDirector.h">
@@ -152,6 +149,9 @@
     </ClInclude>
     <ClInclude Include="src\MButton.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MCommonFunction.h">
+      <Filter>src\MTool</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
